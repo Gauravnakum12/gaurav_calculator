@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #c8e1f1;
+        }
+
+        .calculator {
+            border: 1px solid;
+            padding: 20px;
+            border-radius: 16px;
+            background: #2D2D2D;
+        }
+
+        input {
+            width: 300px;
+            padding: 25px;
+            background: transparent;
+            cursor: pointer;
+            font-size: 30px;
+            background-color: #fff;
+            border: none;
+            border-bottom: 1px solid #fff;
+        }
+
+        input::placeholder {
+            color: #000;
+            background-color: #fff;
+        }
+
+        button {
+            border: none;
+            width: 60px;
+            height: 60px;
+            margin: 10px;
+            border-radius: 50%;
+            background: transparent;
+            color: #fff;
+            font-size: 20px;
+            box-shadow: -8px 8px 15px #ffffff33;
+            cursor: pointer;
+        }
+
+        button:hover {
+            box-shadow: #fff 0px 1px 1px, #fff 0px 5px 5px;
+        }
+
+        .work {
+            color: #3498DB;
+        }
+
+        .equal {
+            background-color: #fb7c14;
+        }
+
+        @media screen and (max-width:375px) {
+            .calculator {
+                padding: 10px !important;
+                background: #2D2D2D;
+            }
+
+            input {
+                padding: 20px;
+                /* margin: 0%; */
+            }
+
+            button {
+                border: none;
+                margin: 10px;
+                width: 40px;
+                height: 40px;
+                padding: 5px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="calculator">
+        <input type="text" id="inputBox" placeholder="0">
+        <section>
+            <button class="work">AC</button>
+            <button class="work">DEL</button>
+            <button class="work">%</button>
+            <button class="equal">=</button>
+        </section>
+        <section>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+
+            <button class="work">&times;</button>
+        </section>
+        <section>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button class="work">/</button>
+        </section>
+        <section>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button class="work">-</button>
+        </section>
+
+        <section>
+            <button>.</button>
+            <button>0</button>
+            <button class="work">+/-</button>
+            <button class="work">+</button>
+        </section>
+    </section>
+    <script>
+        let result = '';
+        let buttons = document.querySelectorAll("button");
+        let input = document.querySelector("input");
+        for (a of buttons) {
+            a.addEventListener('click', function (G) {
+                buttonText = G.target.innerText;
+                //   console.log(typeof(buttonText))
+                if (buttonText == "=") {
+                    result = eval(result);
+                    input.value = result;
+                    result = '';
+                }
+                else if (buttonText == "AC") {
+                    result = '';
+                    input.value = result;
+                }
+                else if (buttonText == "DEL") {
+                    result = result.slice(0, -1);
+                    input.value = result;
+                }
+                else if (buttonText == "×") {
+                    result += '*';
+                    input.value = result;
+                }
+                else if (buttonText == "+/-") {
+                    result = result * (-1);
+                    input.value = result;
+                }
+                else {
+                    result += buttonText;
+                    input.value = result;
+                }
+            });
+
+        }
+    </script>
+</body>
+
+</html>
